@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang = "ru">
+    <meta charset="UTF-8">
+    <title>Homework 1</title>
+    <body>
+        <ul>
+            <li><a href = "http://www.kubsu.ru/">1. КубГУ</a></li>
+            <li><a href = "https://www.kubsu.ru/">2. КубГУ</a></li>
+            <li><a href="https://www.kubsu.ru/" target="_blank"><img src="./picture.png" alt="KubSU emblem"></a></li>
+            <li><a href="/home/daminator/Desktop/Education/KUBSU/Web/ДЗ1/Inside/InsidePage.html">4. Внутренняя страница</a></li>
+            <li><a href="#element">6.Ссылка на фрагмент текущей страницы</a></li>
+            <li><a href="http://example.com/page?param1=value1&param2=value2&param3=value3">Ссылка с тремя параметрами</a></li>
+            <li><a href="http://example.com/page?id=123">Ссылка с параметром id</a></li>
+            <li><a href="./Page.html">9. Относительня ссылка на страницу в текущем каталоге</a></li>
+            <li><a href="./about/about.html">10. Относительня ссылка на страницу в каталоге about</a></li>
+            <li><a href="./level1/level2/page.html">Ссылка на два уровня вниз для пункта 12</a></li>
+            <li><p>13. Это абзац текста, в котором будет <a href="Main.html#element">контекстная ссылка</a></p></li>
+            <li><a href="https://www.kubsu.ru/ru/public-portfolio/14633#page-title">14. Сторонний фрагмент</a></li>
+            <li>15. Ссылка из прямоугольных и круглых областей картинки
+            </li>
+        </ul>
+            <img src = "./Tim.jpg" alt = "Internet's Daddy" usemap = "#Map"> 
+            <map name="Map">
+                <area shape = "rect" coords = "0,0,175,175" href = "https://www.youtube.com/watch?v=DBB_LMepuQ4&ab_channel=CNBCInternationalTV" alt = "area 1">
+                <area shape = "circle" coords = "200,200,50" href = "https://www.youtube.com/watch?v=smBXre2sxJQ&ab_channel=BedtimeHistory" alt = "area2">
+            </map>
+        <ul>
+            <li><a href="">16. Пустая ссылка</a></li>
+            <li><a>17. Ссылка без href</a></li>
+            <li><a href="https://www.w3schools.com/tags/tag_map.asp" rel="nofollow">18. Ссылка без перехода поисковикам</a>
+            </li>
+            <li><a href="./Page.html">19.Запрещенная для индексации ссылка</a></li>
+            <li> 20. Нумерованный список ссылок с подписями title
+                <ol>
+                    <li><a href="https://www.w3schools.com/html/" title="HTML">Ссылка 1</a></li>
+                    <li><a href="https://learn.javascript.ru/" title="JavaScript">Ссылка 2</a></li>
+                    <li><a href="https://web.dev/learn/css/" title="CSS">Ссылка 3</a></li>
+                  </ol>
+            </li>
+            <li>21. <a href="ftp://username:password@example.com/file.txt">Ссылка на FTP-файл с авторизацией</a></li>
+        </ul>
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <br/> 
+            <p id="element">мы сослались на этот текст</p>
+        
+            <form>
+                <label for="fio">ФИО:</label>
+                <input type="text" id="fio" name="fio" required>
+                <br/>
+
+                <label for="phone">Телефон:</label>
+                <input type="tel" id="phone" name="phone" required>
+                <br/>
+
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email">
+                <br/>
+
+                <label for="birthdate">Дата рождения:</label>
+                <input type="date" id="birthdate" name="birthdate" required>
+                <br/>
+
+                <p>Пол:</p>
+                <input type="radio" id="male" name="gender" value="male" required>
+                <label for="male">Мужской</label><br>
+                <input type="radio" id="female" name="gender" value="female" required>
+                <label for="female">Женский</label><br>
+                <br/>
+
+                <label for="programming-language">Любимый язык программирования:</label>
+                <select id="programming-language" name="programming-language" multiple required>
+                  <option value="Pascal">Pascal</option>
+                  <option value="C">C</option>
+                  <option value="C++">C++</option>
+                  <option value="JavaScript">JavaScript</option>
+                  <option value="PHP">PHP</option>
+                  <option value="Python">Python</option>
+                  <option value="Java">Java</option>
+                  <option value="Haskel">Haskel</option>
+                  <option value="Clojure">Clojure</option>
+                  <option value="Prolog">Prolog</option>
+                  <option value="Scala">Scala</option>
+                </select>
+                <br/>
+
+                <label for="biography">Биография:</label>
+                <textarea id="biography" name="biography" required></textarea>
+                <br/>
+
+                <label for="contract">С контрактом ознакомлен(а)</label>
+                <input type="checkbox" id="contract" name="contract" required>
+                <br/>
+
+                <input type="submit" value="Сохранить">
+              </form>
+              
+
+    </body>
+</html>
