@@ -13,3 +13,4 @@ if ($errors === TRUE) {
 
 $frm->loadToDB($dbname, $username, $password);
 
+exit();
