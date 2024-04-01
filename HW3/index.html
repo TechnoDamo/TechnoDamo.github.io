@@ -1,24 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Задание 3</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HW3</title>
 </head>
 <body>
-    <pre>
-        Все работает. База данных создана в соответствии с требованиями. 
-      Форма высылает данные на сервер, там они проходят валидацию и затем загружаются в БД.
-      Код бэкенда в этой же папке в файле index.php.  
-    </pre>
-    <br>
-
-    <p>Скрины таблиц</p>
-    <img src="request.png" width = "1000" heigth = "1000">
-    <br>
-    <img src="requestToLang.png" width = "1000" heigth = "1000">
-    <br>
-    <img src="progLang.png" width = "1000" heigth = "1000">
-    <h5></h5>
-    <br>
+<form action="index.php" method="post">
+<label for="fio">FIO:</label>
+        <input type="text" id="fio" title="Please enter a valid name" name="fio" required><br><br>
+        
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" title="Please enter a valid phone number" name="phone" value="+7" required><br><br>
+        
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="birthdate">Birthday date:</label>
+        <input type="date" id="birthdate" name="birthdate" required><br><br>
+        
+        <label>Gender:</label><br>
+        <input type="radio" id="male" name="gender" value="male" required>
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender" value="female" required>
+        <label for="female">Female</label><br><br>
+        
+        <label for="progLang">Favourite programming language:</label><br>
+        <select id="progLang" name="progLang[]" multiple>
+          <option value="pascal">Pascal</option>
+          <option value="c">C</option>
+          <option value="c++">C++</option>
+          <option value="js">JavaScript</option>
+          <option value="php">PHP</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
+          <option value="haskel">Haskel</option>
+          <option value="clojure">Clojure</option>
+          <option value="prolog">Prolog</option>
+          <option value="scala">Scala</option>
+        </select><br><br>
+        
+        <label for="bio">Bio:</label><br>
+        <textarea id="bio" name="bio" rows="5" cols="40" required></textarea><br><br>
+        
+        <input type="checkbox" id="contract" name="contract" required>
+        <label for="contract">Accept the conditions</label><br><br>
+        <input type="submit" value="Save">
+      </form>
 
 </body>
 </html>
