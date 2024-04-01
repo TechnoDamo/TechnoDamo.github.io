@@ -1,8 +1,8 @@
 <?php
-
+require 'pass.php';
+global $_POST;
 class form
 {
-    private $postData, $filesData;
     private $fio;
     private $phone;
     private $email;
@@ -12,15 +12,14 @@ class form
     private $langs;
     private $langs_check = ['c', 'c++', 'js', 'java', 'clojure', 'pascal', 'python', 'haskel', 'scala', 'php', 'prolog'];
 
-    function __construct($postData) {
-        $this->postData = $postData;
-        $this->fio = $postData['fio'];
-        $this->phone = $postData['phone'];
-        $this->email = $postData['email'];
-        $this->birthdate = $postData['birthdate'];
-        $this->gender = $postData['gender'];
-        $this->bio = $postData['bio'];
-        $this->langs = $postData['progLang'];
+    function __construct() {
+        $this->fio = $_POST['fio'];
+        $this->phone = $_POST['phone'];
+        $this->email = $_POST['email'];
+        $this->birthdate = $_POST['birthdate'];
+        $this->gender = $_POST['gender'];
+        $this->bio = $_POST['bio'];
+        $this->langs = $_POST['progLang'];
     }
     function checkLangs($langs, $langs_check) {
         for ($i = 0; $i < count($langs); $i++) {
@@ -37,6 +36,7 @@ class form
     }
 
     function loadToDB($dbname, $username, $password) {
+        global $servername;
         $fio = $this->getFio();
         $phone = $this->getPhone();
         $email = $this->getEmail();
@@ -46,12 +46,19 @@ class form
         $langs = $this->getLangs();
         $langs_check = $this->getLangsCheck();
         try {
-            $conn = new PDO("mysql:host=localhost;dbname=$dbname", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             echo "Connected successfully ";
+
             $sql = "INSERT INTO request (fio, phone, email, birthdate, gender, bio) 
-VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
+        VALUES (:fio, :phone, :email, :birthdate, :gender, :bio)";
             $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':fio', $fio);
+            $stmt->bindParam(':phone', $phone);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':birthdate', $birthdate);
+            $stmt->bindParam(':gender', $gender);
+            $stmt->bindParam(':bio', $bio);
             $stmt->execute();
             $lastId = $conn->lastInsertId();
 
@@ -62,10 +69,14 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
                 $stmt->execute();
                 $result = $stmt->fetch();
                 $lang_id = $result['lang_id'];
-                $sql = "INSERT INTO requestToLang (id, lang_id) VALUES ($lastId, $lang_id)";
+
+                $sql = "INSERT INTO requestToLang (id, lang_id) VALUES (:lastId, :langId)";
                 $stmt = $conn->prepare($sql);
+                $stmt->bindParam(':lastId', $lastId);
+                $stmt->bindParam(':langId', $lang_id);
                 $stmt->execute();
             }
+
             echo nl2br("\nNew record created successfully");
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
@@ -131,38 +142,6 @@ VALUES ('$fio', '$phone', '$email', '$birthdate', '$gender', '$bio')";
             exit();
         }
         return $errors;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPostData()
-    {
-        return $this->postData;
-    }
-
-    /**
-     * @param mixed $postData
-     */
-    public function setPostData($postData)
-    {
-        $this->postData = $postData;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFilesData()
-    {
-        return $this->filesData;
-    }
-
-    /**
-     * @param mixed $filesData
-     */
-    public function setFilesData($filesData)
-    {
-        $this->filesData = $filesData;
     }
 
     /**

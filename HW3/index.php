@@ -1,11 +1,10 @@
 <?php
 require 'form.php';
-$servername = "localhost";
-$username = "u67283";
-$password = "5460525";
-$dbname = "u67283";
+require 'pass.php';
+global $username, $password, $dbname;
 
-$frm = new form($_POST);
+
+$frm = new form();
 $errors = $frm->checkForm();
 if ($errors === TRUE) {
     echo ' aborted due to mistakes';
@@ -14,5 +13,3 @@ if ($errors === TRUE) {
 
 $frm->loadToDB($dbname, $username, $password);
 
-
-?> 
